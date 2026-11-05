@@ -19,3 +19,5 @@ There are two main programs here: `meetone.pl` and `meet.pl`.
 `meet.pl`: output a list of compatible meeting times for **all** people in a set.
 
 `data.pl`: modify to test solution.
+
+## Learning takeaways
