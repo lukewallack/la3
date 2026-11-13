@@ -22,9 +22,17 @@ lte(T1, T2) :-
 	tomins(T2, Time2),
 	Time1 =< Time2.
 
-% Define meet. Prints out a list of compatible meeting times 
-% for all people.   
-meet(Slot) :-
+% Define meet/1. 
+meet(Slot) :- 
+    .
+
+% Define meet (base case). In this case, only one person remains, 
+% so any of their free slots will work.
+meet([Person], Slot) :-
+    free(Person).
+
+% Define meet (recursive case). In this case, ...
+meet([Person,Person2|Tail], Slot) :-
     .
 
 people([ann,bob,carla]).
