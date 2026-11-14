@@ -48,6 +48,9 @@ meet([Person,Person2|Tail], slot(Start, End)) :-
 	lte(Start, End),											% Start must come before End to overlap.
 	Start \== End.												% A meeting time of 0 is not valid.
 
+%people([fred,gabe]).					% boundary case (noon)
+%people([hide,isaac]).					% boundary case (midnight)
+%people([jason,kaneki,loukandros]).  	% 0 minutes case
 people([ann,bob,carla]).
 
 main :- findall(Slot, meet(Slot), Slots),
