@@ -40,10 +40,13 @@ meet([Person], Slot) :-
 % when each person can meet with all the others.
 % Person, Person2, Tail are variables representing the first person in the 
 % list, the second person, and then the rest of the people in the list.
-meet([Person,Person2|Tail], Slot) :-
-    free(Person, Fslot),			% Bind `Fslot` to one of `Person`'s free slots.
-	meet([Person2|Tail], TailSlot), % Recurse on the rest of the list.
-	. % Check if FSlot overlaps with TailSlot
+meet([Person,Person2|Tail], slot(Start, End)) :-
+    free(Person, slot(Start1, End1)),							% One of `Person`'s free slots.
+	meet([Person2|Tail], slot(Start2, End2)), 					% Recurse on the rest of the list.
+	(lte(Start1, Start2) -> Start = Start2 ; Start = Start1), 	% Start is the latest start time between Start1 & Start2
+	(lte(End1, End2) -> End = End1 ; End = End2),				% End is the earliest end time between End1 & End2
+	lte(Start, End),											% Start must come before End to overlap.
+	Start \== End.												% A meeting time of 0 is not valid.
 
 people([ann,bob,carla]).
 

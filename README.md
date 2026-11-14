@@ -20,5 +20,4 @@ There are two main programs here: `meetone.pl` and `meet.pl`.
 
 `data.pl`: modify to test solution.
 
-## Learning takeaways
-...
+## Journal
